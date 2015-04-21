@@ -6,7 +6,7 @@ from commands import getstatusoutput
 from os import listdir
 from os.path import isfile, join
 
-print "\nUsage: mapping_blat_gs.py ListOfSequences Reference NumberOfThreads [map/div/mapdiv/nomap]\n"
+print "\nUsage: mapping_blat_gs.py ListOfSequences Reference NumberOfThreads [map/div/mapdiv/ssaha2/ssaha2div/nomap]\n"
 
 try:
     lista = sys.argv[1]
@@ -119,6 +119,15 @@ for n in range(0,len(files)/2):
 
         # Index bam file
         call("samtools index %s_mapping/454Contigs.bam" % file_name, shell=True)
+
+    # SSAHA2
+    if map_question == "ssaha2" or map_question == "ssaha2div":
+        call("ls %s %s > ssaha2_list.txt" % (file1[:-3]+".sel.fq", file2[:-3]+".sel.fq"), shell=True)
+        call("ssaha2_run.py ssaha2_list.txt %s" % (list,reference), shell=True)
+        call("rm ssaha2_list.txt", shell=True)
+        if map_question == "ssaha2div":
+            file1_s = file1.split(".")
+            call("divnuc_bam.py %s %s" % (reference, file1_s+".mapped.bam"), shell=True)
 
     #Nothing more happens
     if map_question == "nomap":
