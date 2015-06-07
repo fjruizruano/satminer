@@ -27,18 +27,19 @@ lis = open(li).readlines()
 
 for file in lis:
     file = file[:-1]
-    call("faSplit sequence %s %s tmp_queries_" % (file, thr), shell=True)
+    call("FastA.split.pl %s tmp_queries %s" % (file, thr), shell=True)
+
+#    call("faSplit sequence %s %s tmp_queries_" % (file, thr), shell=True)
     onlyfiles = [f for f in listdir(".") if isfile(join(".",f))]
     splits = []
     for f in onlyfiles:
-        if f.startswith("tmp_queries_") and f.endswith(".fa"):
+        if f.startswith("tmp_queries") and f.endswith(".fa"):
             splits.append(f)
     splits.sort()
     commands = []
     for n in range(0,len(splits)):
-        com = "blat -stepSize=5 -repMatch=2253 -minScore=0 -minIdentity=0 %s %s %s" % (db,splits[n],splits[n]+".blat")
+        com = "blat -noHead -stepSize=5 -repMatch=2253 -minScore=0 -minIdentity=0 %s %s %s" % (db,splits[n],splits[n]+".blat")
         commands.append(com)
-
     processes = [Popen(cmd, shell=True) for cmd in commands]
     for p in processes:
         p.wait()
@@ -50,4 +51,4 @@ for file in lis:
         w.write("".join(blat[5:]))
     w.close()
 
-call("rm tmp_queries_*", shell=True)
+call("rm tmp_queries*", shell=True)
