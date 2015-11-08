@@ -16,4 +16,7 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 * Homology among consensus sequences: rm_homology.py
 * Intragenomic variation: rm_getseq.py, sat_cutter.py
 * Abundance and divergece: sat_subfam2fam.py, repeat_masker_run_big.py
+```
+$ test
+```
 
