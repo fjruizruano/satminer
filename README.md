@@ -10,21 +10,21 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 ##satDNA mining
 
 ### Preparing sequences to RepeatExplorer
-```
+```bash
 $ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq [Prefix]
 ```
 
 ### Get contigs
-```
-get_cluster.py
+```bash
+$ get_cluster.py
 ```
 
-```
-rexp_select_contigs.py
+```bash
+$ rexp_select_contigs.py
 ```
 
 ### Run DeconSeq
-```
+```bash
 $ deconseq_run.py ListOfFastaFiles Reference Threads
 ```
 
@@ -32,24 +32,24 @@ $ deconseq_run.py ListOfFastaFiles Reference Threads
 
 ### Homology among consensus sequences
 
-```
+```bash
 $ rm_homology.py FastaFile
 ```
 
 ### Intragenomic variation
 
-```
+```bash
 $ rm_getseq.py FastaFile RepeatMaskerOut [LenMinimum]
 ```
 Optionally:
 
-```
+```bash
 $ sat_cutter.py AlignedFastaFile
 ```
 
 ### Abundance and divergece
 
-```
+```bash
 $ repeat_masker_run_big.py ListOfFastaFiles FastaReference NumberOfThreads
 ```
 Pattern File:
@@ -61,7 +61,7 @@ Sat-02B	Sat-02A
 ```
 Running script
 
-```
+```bash
 $ sat_subfam2fam.py AlignFile Pattern File
 ```
 
