@@ -8,15 +8,60 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 * Dependencies: RepeatMasker, seqTK, DeconSeq, BLAT, Trimmomatic
 
 ##satDNA mining
-* Preparing sequences to RepeatExplorer: rexp_prepare.py
-* Get contigs: get_cluster.py, rexp_select_contigs.py
-* Run DeconSeq: run_deconseq.py
+
+### Preparing sequences to RepeatExplorer
+```
+$ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq [Prefix]
+```
+
+### Get contigs
+```
+get_cluster.py
+```
+
+```
+rexp_select_contigs.py
+```
+
+### Run DeconSeq
+```
+$ deconseq_run.py ListOfFastaFiles Reference Threads
+```
 
 ##satDNA analysis
-* Homology among consensus sequences: rm_homology.py
-* Intragenomic variation: rm_getseq.py, sat_cutter.py
-* Abundance and divergece: sat_subfam2fam.py, repeat_masker_run_big.py
+
+### Homology among consensus sequences
+
 ```
-$ test
+$ rm_homology.py FastaFile
+```
+
+### Intragenomic variation
+
+```
+$ rm_getseq.py FastaFile RepeatMaskerOut [LenMinimum]
+```
+Optionally:
+
+```
+$ sat_cutter.py AlignedFastaFile
+```
+
+### Abundance and divergece
+
+```
+$ repeat_masker_run_big.py ListOfFastaFiles FastaReference NumberOfThreads
+```
+Pattern File:
+
+```
+Sat-01A	Sat-01A
+Sat-02A Sat-02A
+Sat-02B	Sat-02A
+```
+Running script
+
+```
+$ sat_subfam2fam.py AlignFile Pattern File
 ```
 
