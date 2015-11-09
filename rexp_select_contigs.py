@@ -29,7 +29,7 @@ for el in id_dict:
     i = 0
     for x in info_s:
         i += x[1]
-    ii = 1.0*i/3
+    ii = 1.0*i/2
     j = 0
     for x in info_s:
         if j < ii:
