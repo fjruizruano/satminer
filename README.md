@@ -15,19 +15,19 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 
 ##1. satDNA mining
 
-###1.a. Preparing sequences to RepeatExplorer
+###1a. Preparing sequences to RepeatExplorer
 
 There is not a number of paired reads to start. You can try with 100000 or 200000.
 
 ```
-$ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq [Prefix]
+$ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq
 ```
 
-###1.b. Run RepeatExplorer
+###1b. Run RepeatExplorer
 
 Run RepeatExplorer with default options. 
 
-###1.c. Get contigs
+###1c. Get contigs
 
 Uncompress RepeatExplorer's output and go to the "clusters" folder. Get a list with the name of the contigs representing a half of the number of the cluster reads reads.
 
@@ -41,27 +41,27 @@ Since clusters with few number of reads are difficult to distinguish as satDNA c
 $ extract_seq.py FastaFile List
 ```
 
-###1.d. Run DeconSeq
+###1d. Run DeconSeq
 ```
 $ deconseq_run.py ListOfFastaFiles Reference Threads
 ```
 
-###1.e. Prepare filtered reads to RepeatExplorer
+###1e. Prepare filtered reads to RepeatExplorer
 Usually, we recommend to duplicate the number of reads.
 ```
-$ rexp_prepare_deconseq.py NumberOfPairedReads LibraryA_clean_1.fastq LibraryA_clena_2.fastq
+$ rexp_prepare_deconseq.py NumberOfPairedReads LibraryA_clean_1.fastq LibraryA_clean_2.fastq
 ```
-You will then get a FASTA file to run again RepeatExplorer, so continue withe step 1.b. 
+You will then get a FASTA file to run again RepeatExplorer, so continue with step 1b. 
 
-##2 satDNA analysis
+##2. satDNA analysis
 
-###2.a. Homology among consensus sequences
+###2a. Homology among consensus sequences
 
 ```
 $ rm_homology.py FastaFile
 ```
 
-###2.b. Intragenomic variation
+###2b. Intragenomic variation
 
 ```
 $ rm_getseq.py FastaFile RepeatMaskerOut [LenMinimum]
@@ -72,7 +72,7 @@ Optionally:
 $ sat_cutter.py AlignedFastaFile
 ```
 
-###2.c. Abundance and divergece
+###2c. Abundance and divergece
 
 ```
 $ repeat_masker_run_big.py ListOfFastaFiles FastaReference NumberOfThreads
