@@ -13,9 +13,9 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
   * BLAT [http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/)
   * Trimmomatic [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
 
-##satDNA mining
+##1. satDNA mining
 
-### Preparing sequences to RepeatExplorer
+###1.a. Preparing sequences to RepeatExplorer
 
 There is not a number of paired reads to start. You can try with 100000 or 200000.
 
@@ -23,11 +23,11 @@ There is not a number of paired reads to start. You can try with 100000 or 20000
 $ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq [Prefix]
 ```
 
-### Run RepeatExplorer
+###1.b. Run RepeatExplorer
 
 Run RepeatExplorer with default options. 
 
-### Get contigs
+###1.c. Get contigs
 
 Uncompress RepeatExplorer's output and go to the "clusters" folder. Get a list with the name of the contigs representing a half of the number of the cluster reads reads.
 
@@ -41,20 +41,27 @@ Since clusters with few number of reads are difficult to distinguish as satDNA c
 $ extract_seq.py FastaFile List
 ```
 
-### Run DeconSeq
+###1.d. Run DeconSeq
 ```
 $ deconseq_run.py ListOfFastaFiles Reference Threads
 ```
 
-##satDNA analysis
+###1.e. Prepare filtered reads to RepeatExplorer
+Usually, we recommend to duplicate the number of reads.
+```
+$ rexp_prepare_deconseq.py NumberOfPairedReads LibraryA_clean_1.fastq LibraryA_clena_2.fastq
+```
+You will then get a FASTA file to run again RepeatExplorer, so continue withe step 1.b. 
 
-### Homology among consensus sequences
+##2 satDNA analysis
+
+###2.a. Homology among consensus sequences
 
 ```
 $ rm_homology.py FastaFile
 ```
 
-### Intragenomic variation
+###2.b. Intragenomic variation
 
 ```
 $ rm_getseq.py FastaFile RepeatMaskerOut [LenMinimum]
@@ -65,7 +72,7 @@ Optionally:
 $ sat_cutter.py AlignedFastaFile
 ```
 
-### Abundance and divergece
+###2.c. Abundance and divergece
 
 ```
 $ repeat_masker_run_big.py ListOfFastaFiles FastaReference NumberOfThreads
