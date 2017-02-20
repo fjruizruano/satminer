@@ -17,7 +17,7 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 
 ###1a. Preparing sequences to RepeatExplorer
 
-There is not a number of paired reads to start. You can try with 100000 or 200000. You should also indicate the minimum quality and the minimum length. For example if you are using Illumina PE 2x100 reads, you can use 20 and 100, respectively.
+There is not a number of paired reads to start. You can try with 100000 or 200000. You should also indicate the minimum quality and the minimum length. For example if you are using Illumina PE 2x100 reads, you can try 20 and 100, respectively.
 
 ```
 $ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq MinQual MinLen
