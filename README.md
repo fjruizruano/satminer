@@ -20,7 +20,7 @@ satMiner: A Toolkit to NGS satellite DNA mining and analysis
 There is not a number of paired reads to start. You can try with 100000 or 200000.
 
 ```
-$ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq
+$ rexp_prepare.py NumberOfPairedReads LibraryA_1.fastq LibraryA_2.fastq MinQual MinLen
 ```
 
 ###1b. Run RepeatExplorer
