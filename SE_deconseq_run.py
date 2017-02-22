@@ -20,7 +20,7 @@ except:
 try:
     thr = sys.argv[3]
 except:
-    thr = raw_input("Introduce number of threads")
+    thr = raw_input("Introduce number of threads: ")
 
 refp = ref.split(".")
 refpoints = refp[0:-1]
@@ -32,12 +32,12 @@ dsdir = "deconseq-standalone-0.4.3"
 
 elements = os.listdir(".")
 if dsdir not in elements:
-    call("cp -r /usr/local/lib/%s ." % dsdir, shell=True)
+    call("cp -r /homes/ashah/install_files/%s ." % dsdir, shell=True)
     call("mkdir %s/db" % dsdir, shell=True)
 
 os.chdir(dsdir+"/db")
 call("ln -sf ../../%s" % ref, shell=True)
-call("../bwa64 index -p %s -a is %s" % (refname,ref), shell=True)
+call("../bwa64 index -p %s -a is  %s" % (refname,ref), shell=True)
 os.chdir("../")
 conf = open("DeconSeqConfig.pm").readlines()
 conf_out = open("tmp_conf.txt", "w")
@@ -62,7 +62,7 @@ filename = file1.split(".")
 filename = filename[0]
 call("mkdir %s/%s" % (dsdir,filename), shell=True)
 os.chdir("%s/%s" % (dsdir,filename))
-    
+
 call("ln -sf ../../%s ." % file1 , shell=True)
 
 call("FastQ.split.pl %s tmp_queries_1 %s" % (file1, thr), shell=True)
