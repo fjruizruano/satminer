@@ -16,7 +16,8 @@ except:
     two = raw_input("Introduce FASTQ file 2: ")
 
 get_reads = """awk 'NR == 1 || NR % 4 == 1' """
-trim_reads = """awk '{print substr($1,2, length($0)-3)}' """
+trim_reads = """awk '{print substr($0,2, length($0))}' """
+#trim_reads = """awk '{print $0}' """
 
 files = sys.argv[1:3]
 
