@@ -2,6 +2,7 @@
 
 import sys, os
 from subprocess import call
+from random import randint
 
 print "\nUsage: SE_rexp_prepare.py NumberOfPairedReads File.fastq MinQual MinLen [PREFIX]\n"
 
@@ -52,13 +53,14 @@ print rr1
 #Trimming with Trimmomatic
 
 #trimmomatic = "trimmomatic SE -phred33 %s %s ILLUMINACLIP:/usr/local/lib/Trimmomatic-0.32/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:%s MINLEN:%s" % (r1, rr1+"_paired.fastq", mq, ml)
-trimmomatic = "trimmomatic SE -phred33 %s %s ILLUMINACLIP:/homes/ashah/install_files/Trimmomatic-0.36/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:%s MINLEN:%s" % (r1, rr1+"_single_end.fastq", mq, ml)
+trimmomatic = "trimmomatic SE -threads 4 -phred33 %s %s ILLUMINACLIP:/homes/ashah/install_files/Trimmomatic-0.36/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:%s MINLEN:%s" % (r1, rr1+"_single_end.fastq", mq, ml)
 
 print trimmomatic
 
 #random selection of reads
+random_seed=randint(1,1000000)
 
-fastq_random_1 = "seqtk sample -s 100 %s %s > %s" % (rr1+"_single_end.fastq",sel_reads,rr1+"_single_end.fastq.subset")
+fastq_random_1 = "seqtk sample -s %s %s %s > %s" % (random_seed,rr1+"_single_end.fastq",sel_reads,rr1+"_single_end.fastq.subset")
 
 #convert fastq to fasta
 fastq_to_fasta =  "seqtk seq -a %s > %s" % (rr1+"_single_end.fastq.subset",rr1+"_all_"+prefix+str(sel_reads)+".fasta")
