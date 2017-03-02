@@ -96,10 +96,13 @@ for command in commands:
 
 for n in range(1,2):
     concat = ["cat"]
+    concat2 = ["cat"]
     for fq in splits:
         if fq.startswith("tmp_queries_%s" % (str(n))):
             concat.append("%s.dir/*clean*" % (fq))
+            concat2.append("%s.dir/*cont*" % (fq))
     call("%s > %s_clean.fastq" % (" ".join(concat), filename), shell=True)
+    call("%s > %s_cont.fastq" % (" ".join(concat2), filename), shell=True)
 
 call("rm db deconseq.pl bwa64 DeconSeqConfig.pm", shell=True)
 call("rm tmp_queries*.fastq", shell=True)
