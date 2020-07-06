@@ -35,6 +35,9 @@ Uncompress RepeatExplorer's output and go to the "clusters" folder. Get a list w
 $ cd seqClust/clustering/clusters
 $ rexp_get_contigs.py
 ```
+
+UPDATE (July 2020): If you are using the RepeatExplorer2 version, please use rexp_get_contigs_re2.py instead.
+
 Since clusters with few number of reads are difficult to distinguish as satDNA clusters, we select a half of the clusters and we then extract the sequences as a FASTA file:
 
 ```
