@@ -46,7 +46,7 @@ $ extract_seq.py FastaFile List
 
 ### 1d. Run DeconSeq
 ```
-$ deconseq_run.py ListOfFastaFiles Reference Threads
+$ deconseq_run.py ListOfFastqFiles Reference Threads
 ```
 
 ### 1e. Prepare filtered reads to RepeatExplorer
